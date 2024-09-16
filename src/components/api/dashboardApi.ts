@@ -82,8 +82,7 @@ interface UserProfile {
   permissions: string[];
 }
 
-// Modificamos aquí para transformar los strings en objetos Permission[]
-export const fetchUserProfile = async () => {
+export const fetchUserProfile = async (): Promise<UserProfile> => {
   try {
     const token = Cookies.get("token");
     if (!token) {
@@ -97,11 +96,7 @@ export const fetchUserProfile = async () => {
       }
     );
 
-    // Mapea el array de strings a objetos Permission
-    return response.data.permissions.map((permission) => ({
-      name: permission, // Asumimos que los strings son los nombres de los permisos
-      granted: true, // Puedes ajustar esto según la lógica de tu backend
-    }));
+    return response.data;
   } catch (error) {
     console.error("Error fetching user profile:", error);
     throw error;

@@ -1,28 +1,29 @@
 import withPWA from 'next-pwa';
+import { serviceWorker } from 'next-service-worker';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: false,
-
-    // Ignorar errores de ESLint durante el build
     eslint: {
         ignoreDuringBuilds: true,
     },
-
-    // Ignorar errores de TypeScript durante el build
     typescript: {
         ignoreBuildErrors: true,
     },
-
-    // Otras configuraciones adicionales
 };
 
-// Configuración para PWA
+// Configuración de PWA
 const withPWAConfig = withPWA({
     dest: 'public',
-    disable: process.env.NODE_ENV === 'development',
+    disable: false,
     register: true,
     skipWaiting: true,
-})(nextConfig);
+});
 
-export default withPWAConfig;
+// Configuración de Service Worker con next-service-worker
+const withServiceWorker = serviceWorker();
+
+// Combina ambas configuraciones
+const combinedConfig = withServiceWorker(withPWAConfig(nextConfig));
+
+export default combinedConfig;

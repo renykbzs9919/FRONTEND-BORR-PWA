@@ -68,6 +68,10 @@ interface Permission {
   granted: boolean;
 }
 
+interface UserProfile {
+  permissions: Permission[];
+}
+
 export default function SausageERPDashboard() {
   const [timeRange, setTimeRange] = useState("month");
   const [summaryData, setSummaryData] = useState<SummaryData | null>(null);
@@ -85,7 +89,7 @@ export default function SausageERPDashboard() {
       setError(null);
       try {
         const userProfile = await fetchUserProfile();
-        setUserPermissions(userProfile);
+        setUserPermissions(userProfile.permissions);
 
         const [
           summaryResult,

@@ -24,8 +24,8 @@ import { FileText, Users, Package, DollarSign } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import dynamic from "next/dynamic";
+import Cookies from "js-cookie";
 
-const Cookies = dynamic(() => import("js-cookie"), { ssr: false });
 const PdfTemplate = dynamic(
   () => import("@/components/pdf/clienteespecifico"),
   { ssr: false }

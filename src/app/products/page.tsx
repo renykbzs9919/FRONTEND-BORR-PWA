@@ -824,7 +824,9 @@ export default function ProductsPage() {
                     {currentItems.map((product) => (
                       <TableRow key={product._id}>
                         <TableCell>{product.nombre}</TableCell>
-                        <TableCell>{product.categoria.nombre}</TableCell>
+                        <TableCell>
+                          {product.categoria?.nombre || "No category"}
+                        </TableCell>
                         <TableCell>{product.sku}</TableCell>
                         <TableCell>
                           Bs.{product.precioVenta.toFixed(2)}
@@ -862,7 +864,7 @@ export default function ProductsPage() {
                     <CardHeader>
                       <CardTitle>{product.nombre}</CardTitle>
                       <CardDescription>
-                        {product.categoria.nombre}
+                        {product.categoria?.nombre || "No category"}
                       </CardDescription>
                     </CardHeader>
                     <CardContent>

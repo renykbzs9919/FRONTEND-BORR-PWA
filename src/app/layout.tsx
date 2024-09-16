@@ -30,23 +30,38 @@ export default function RootLayout({
     setIsLoggedIn(!!token);
   }, [pathname]);
 
+  useEffect(() => {
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker
+          .register("/sw.js") // Ruta al Service Worker
+          .then((registration) => {
+            console.log("Service Worker registrado con éxito:", registration);
+          })
+          .catch((error) => {
+            console.log("Error al registrar el Service Worker:", error);
+          });
+      });
+    }
+  }, []);
+
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="es">
       <Head>
-        <title>{title}</title> {/* Aquí se renderiza el título */}
-        <meta name="application-name" content="Mi PWA Next.js" />
+        <title>{title}</title>
+        <meta name="application-name" content="Embutidos Mardely" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="Mi PWA Next.js" />
-        <meta name="description" content="Una PWA creada con Next.js" />
+        <meta name="apple-mobile-web-app-title" content="Embutidos Mardely" />
+        <meta name="description" content="Empresa de embutidos Mardely" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="theme-color" content="#000000" />
-        <link rel="apple-touch-icon" href="/icon-192x192.svg" />
+        <link rel="apple-touch-icon" href="/mardely-logo.png" />
         <link
           rel="icon"
           type="image/png"
