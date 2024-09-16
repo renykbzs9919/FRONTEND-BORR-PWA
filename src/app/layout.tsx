@@ -25,11 +25,13 @@ export default function RootLayout({
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const pathname = usePathname();
 
+  // Verificar si el usuario está autenticado
   useEffect(() => {
     const token = Cookies.get("token");
     setIsLoggedIn(!!token);
   }, [pathname]);
 
+  // Registrar el Service Worker
   useEffect(() => {
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
@@ -53,6 +55,8 @@ export default function RootLayout({
     <html lang="es">
       <Head>
         <title>{title}</title>
+
+        {/* PWA Meta Tags */}
         <meta name="application-name" content="Embutidos Mardely" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -61,6 +65,12 @@ export default function RootLayout({
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="theme-color" content="#000000" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover"
+        />
+
+        {/* Favicons */}
         <link rel="apple-touch-icon" href="/mardely-logo.png" />
         <link
           rel="icon"
@@ -76,6 +86,27 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/manifest.json" />
         <link rel="shortcut icon" href="/favicon.ico" />
+
+        {/* Meta tags para redes sociales (Open Graph y Twitter) */}
+        <meta property="og:title" content="Embutidos Mardely" />
+        <meta
+          property="og:description"
+          content="Empresa de embutidos Mardely"
+        />
+        <meta property="og:image" content="/mardely-logo.png" />
+        <meta property="og:url" content="https://embmardely.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="/mardely-logo.png" />
+        <meta
+          name="twitter:description"
+          content="Empresa de embutidos Mardely"
+        />
+        <meta name="twitter:title" content="Embutidos Mardely" />
+
+        {/* Meta para Windows */}
+        <meta name="msapplication-TileImage" content="/mardely-logo.png" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
       </Head>
       <body className={inter.className}>
         <ThemeProvider
