@@ -57,6 +57,12 @@ const allMenuItems: MenuItem[] = [
     permission: "ver_ventas",
   },
   {
+    name: "Pre-Ventas",
+    href: "/preventas",
+    icon: CreditCard,
+    permission: "ver_preventas",
+  },
+  {
     name: "Pagos",
     href: "/pagos",
     icon: CreditCard,

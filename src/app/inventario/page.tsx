@@ -317,13 +317,6 @@ export default function InventoryManagementPage() {
     }
   };
 
-  const handleDownload = async (format: "pdf" | "csv") => {
-    console.log(`Descargando en formato ${format}`);
-    toast({
-      title: "Información",
-      description: "La funcionalidad de descarga aún no está implementada.",
-    });
-  };
 
   const filteredStocks = stocks.filter((stock) =>
     stock.productoId.nombre
@@ -389,22 +382,6 @@ export default function InventoryManagementPage() {
             Alertas
           </Button>
         </div>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="flex items-center">
-              <Download className="mr-2 h-4 w-4" />
-              Descargar
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem onClick={() => handleDownload("pdf")}>
-              Descargar PDF
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => handleDownload("csv")}>
-              Descargar CSV
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
       </div>
 
       {activeTab === "stocks" && (

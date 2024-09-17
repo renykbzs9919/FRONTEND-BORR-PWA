@@ -290,6 +290,18 @@ const permissionGroups = [
     name: "Predicciones",
     permissions: ["ver_predicciones"],
   },
+  {
+    name: "Preventas",
+    permissions:[
+      "crear_preventa",
+      "ver_preventas",
+      "ver_preventa_id",
+      "actualizar_preventa_id",
+      "eliminar_preventa_id",
+      "ver_preventa_cliente",
+      "confirmar_entrega_preventa",
+    ],
+  }
 ];
 
 export default function UsersPage() {

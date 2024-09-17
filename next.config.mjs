@@ -1,5 +1,4 @@
 import withPWA from 'next-pwa';
-import { serviceWorker } from 'next-service-worker';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -61,10 +60,9 @@ const withPWAConfig = withPWA({
     ],
 });
 
-// Configuración de Service Worker con next-service-worker
-const withServiceWorker = serviceWorker();
+
 
 // Combina ambas configuraciones
-const combinedConfig = withServiceWorker(withPWAConfig(nextConfig));
+const combinedConfig = withPWAConfig(nextConfig);
 
 export default combinedConfig;
