@@ -500,10 +500,10 @@ export default function ProductsPage() {
         <CardHeader>
           <CardTitle className="text-xl md:text-2xl">
             <ShoppingCart className="inline-block mr-2 h-6 w-6" />
-            Gestión de Inventario
+            Gestión de Productos
           </CardTitle>
           <CardDescription className="text-sm">
-            Seleccione la sección de inventario para gestionar
+            Seleccione la sección de Productos o Categorías para gestionar
           </CardDescription>
         </CardHeader>
         <CardContent>
