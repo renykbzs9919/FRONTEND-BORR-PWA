@@ -214,7 +214,7 @@ export default function InventoryManagementPage() {
       }
 
       const loteData: Partial<LoteProduccion> = {
-        productoId: producto,
+        productoId: producto._id,
         cantidadProducida: data.cantidadProducida,
         ubicacionLote: data.ubicacionLote,
         fechaProduccion: moment(data.fechaProduccion).format("YYYY-MM-DD"), // Convertir a string
