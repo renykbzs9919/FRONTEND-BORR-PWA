@@ -11,7 +11,36 @@ const withPWA = withPWAInit({
   disable: false,
   workboxOptions: {
     disableDevLogs: true,
-  }
+    runtimeCaching: [
+      {
+        // Caching for all GET requests to your API
+        urlPattern: /^https:\/\/back-borr-pwa-production\.up\.railway\.app\/api\/.*$/,
+        handler: 'NetworkFirst',
+        method: 'GET',
+        options: {
+          cacheName: 'api-get-cache',
+          expiration: {
+            maxEntries: 100,
+            maxAgeSeconds: 24 * 60 * 60, // 1 día
+          },
+        },
+      },
+      {
+        // Handling POST, PUT, and DELETE requests with background sync
+        urlPattern: /^https:\/\/back-borr-pwa-production\.up\.railway\.app\/api\/.*$/,
+        handler: 'NetworkOnly',
+        method: ['POST', 'PUT', 'DELETE'],
+        options: {
+          backgroundSync: {
+            name: 'api-queue',
+            options: {
+              maxRetentionTime: 24 * 60, // 24 horas
+            },
+          },
+        },
+      },
+    ],
+  },
 });
 
 const nextConfig = {
@@ -24,4 +53,4 @@ const nextConfig = {
   },
 };
 
-export default withPWA( nextConfig );
+export default withPWA(nextConfig);
