@@ -26,13 +26,41 @@ const withPWA = withPWAInit({
         },
       },
       {
-        // Handling POST, PUT, and DELETE requests with background sync
+        // Handling POST requests with background sync
         urlPattern: /^https:\/\/back-borr-pwa-production\.up\.railway\.app\/api\/.*$/,
         handler: 'NetworkOnly',
-        method: ['POST', 'PUT', 'DELETE'],
+        method: 'POST',
         options: {
           backgroundSync: {
-            name: 'api-queue',
+            name: 'api-queue-post',
+            options: {
+              maxRetentionTime: 24 * 60, // 24 horas
+            },
+          },
+        },
+      },
+      {
+        // Handling PUT requests with background sync
+        urlPattern: /^https:\/\/back-borr-pwa-production\.up\.railway\.app\/api\/.*$/,
+        handler: 'NetworkOnly',
+        method: 'PUT',
+        options: {
+          backgroundSync: {
+            name: 'api-queue-put',
+            options: {
+              maxRetentionTime: 24 * 60, // 24 horas
+            },
+          },
+        },
+      },
+      {
+        // Handling DELETE requests with background sync
+        urlPattern: /^https:\/\/back-borr-pwa-production\.up\.railway\.app\/api\/.*$/,
+        handler: 'NetworkOnly',
+        method: 'DELETE',
+        options: {
+          backgroundSync: {
+            name: 'api-queue-delete',
             options: {
               maxRetentionTime: 24 * 60, // 24 horas
             },
