@@ -11,7 +11,23 @@ const withPWA = withPWAInit({
   disable: false,
   workboxOptions: {
     disableDevLogs: true,
-  }
+    runtimeCaching: [
+      {
+        // Cacha todos los GET de la API, incluyendo rutas dinámicas con IDs
+        urlPattern: /^https:\/\/back-borr-pwa-production\.up\.railway\.app\/api\/.*$/,
+        handler: 'NetworkFirst',
+        method: 'GET',
+        options: {
+          cacheName: 'api-get-cache',
+          expiration: {
+            maxEntries: 200, // Número máximo de entradas en la caché
+            maxAgeSeconds: 7 * 24 * 60 * 60, // Duración de 7 días
+          },
+          networkTimeoutSeconds: 10, // Tiempo de espera antes de usar la caché
+        },
+      },
+    ],
+  },
 });
 
 const nextConfig = {
@@ -24,4 +40,4 @@ const nextConfig = {
   },
 };
 
-export default withPWA( nextConfig );
+export default withPWA(nextConfig);
